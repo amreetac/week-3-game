@@ -1,0 +1,24 @@
+@import url(http://fonts.googleapis.com/css?family=Permanent+Marker);
+
+body {
+	background: black fixed;
+	text-align: center;
+	font-family: Helvetica, sans-serif;
+  font-color: white;
+}
+input {
+	border: 2px solid #999;
+	font-family: Helvetica, sans-serif;
+	color: #999;
+}
+
+#section {
+	font-family: 'Permanent Marker', 'cursive';
+	font-size: 2.0em;
+  color: white;
+}
+h1, h2 {
+	font-family: 'Permanent Marker', 'cursive';
+  color: white;
+}
+
