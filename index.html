@@ -7,121 +7,29 @@
 	<title></title>
 </head>
 <body>
+
+<audio controls autoplay>
+  <source src="assets/audio/friends.mp3" type="audio/mp3">
+</audio>
+
+
 <img src="assets/images/best90s.jpg" class="image" alt="90s">
-<h1>Press any key to get<br>
-  Started! </h1>
-
-<br>
-
-<h1> Wins </h1>
 
 <br> 
 
-<h1> Current Word </h1>
+
+
+</br>
+
+<h1> Press Any Key to Get Started </h1>
 
 <br>
 
-  <p id="section"></p>
-<form name="letters">
-<input name="sign" type="text" size="5" maxlength="1">
-<p id="lettersrem">Number of Letters Remaining:</p>
-<img src="https://www.writteninpencil.de/Projekte/Hangman/hangman0.png" id="hangman"><br />
-<input name="refresh" type="button" value="New Game" onClick="location.reload()">
-</form>
+<div id= "game">
 
-<h1> Number of letters remaining </h1>
+</div>
 
-<br>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 
-<h1> Letters already guessed </h1>
-
-<script type="text/javascript">
-
-
-document.onkeyup = function(event) {
-	how to incorporate?
-
-	*/
-	
-	var mywords = [
-["F", "R", "I", "E", "N", "D", "S"],
-  ["F","U","L","L","H","O","U","S","E"],
-  ["D","O","U","G"],
-  ["O","V","E","R","A","L","L","S"],
-  ["G","A","M","E","B","O","Y"],
-  ["S","L","I","M","E"]
-]
-var random = Math.floor((Math.random()*(wordlen.length-1))); 
-
-var guess = wordlen[random]; // the word to guess will be chosen from the array above
-var word = new Array(guess.length);
-var error = 0;
-
-// every letter in the word is symbolized by an underscore in the guessfield
-for (var i = 0; i < word.length; i++){
-	word[i] = "_ ";
-}
-
-// prints the guessfield
-function printword(){
-	for (var i = 0; i < word.length; i++){
-	var section = document.getElementById("section");
-	var letter = document.createTextNode(word[i]);
-	section.appendChild(letter);
-	}
-}
-
-//checks if the the letter provided by the user matches one or more of the letters in the word
-var matchcheck = function(){
-	var f = document.letters; 
-	var b = f.elements["sign"]; 
-	var character = b.value; // the letter provided by the user
-	character = character.toUpperCase();
-	for (var i = 0; i < guess.length; i++){
-		if(guess[i] === character){
-			word[i] = character + " ";
-			var match = true;
-		}
-	b.value = "";
-	}
-	
-	//deletes the guessfield and replaces it with the new one
-	var section = document.getElementById("section");
-	section.innerHTML=""; 
-	printword();
-	
-	// if a guessed letter is not in the word, the letter will be put on the "wrong letters"-list and hangman grows
-	if(!match){
-		var wrongList = document.getElementById("wrongList");
-		var letter = document.createTextNode(" " + character);
-		wrongList.appendChild(letter); 
-		error++;
-		var hangman = document.getElementById("hangman");
-    hangman.src = "http://www.writteninpencil.de/Projekte/Hangman/hangman" + error + ".png";
-	}
-	
-	//checks if all letters have been found
-	var all_letters = true;
-	for (var i = 0; i < word.length; i++){
-		if(word[i] === "_ "){
-			all_letters = false;
-		}
-	}
-	if(all_letters){
-		window.alert("You win!");
-	}
-	
-	//once you got six wrong letters, you lose
-	if(error === 6){
-		window.alert("Loser!");
-	}
-}
-
-function init(){
-	printword();
-}
-
-window.onload = init;
-</script>
 </body>
 </html>
