@@ -21,6 +21,7 @@ var wins = 0;
 var losses = 0;
 var guesses = 12;
 var arr = []; // This array holds the user's guesses so far
+//var mySound;  Attempt in creating a sound after win.
 
 
 
@@ -55,6 +56,8 @@ var arr = []; // This array holds the user's guesses so far
                                                      
             if (remaining == 0) {
                 wins++;
+                //mySound = new sound("assets/audio/applause.mp3");
+                //mySound.play();
             }
             else {
                 losses++;
