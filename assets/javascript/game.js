@@ -30,42 +30,55 @@ var arr = []; // This array holds the user's guesses so far
 
     var userGuess = String.fromCharCode(event.keyCode).toUpperCase();
 
-                var repeat = 0; // 0 means no repeat, 1 means repeated and should be ignored
-                for (var i = 0; i < arr.length; i++){
-                    if (userGuess == arr[i]) repeat = 1;
-                }
-                if (repeat == 0) {
-                arr.push(userGuess);
-                guesses--;
-                var success = 0; // 0 means user guess did not match, 1 means it mathed 1 or more times
-                for (var i = 0; i < word.length; i++){
-                    if (word[i] == userGuess) {
-                        success = 1;
-                        guessword[i] = word[i];
-                        remaining--;
-                    }
-                }
-                if (remaining == 0 || guesses == 0) {
-                    if (remaining == 0) wins++;
-                    else losses++;
-                    guesses = 12;
-                    arr = [];
-                    random = Math.floor((Math.random()*(wordlist.length-1)));
+        var repeat = 0; // 0 means no repeat, 1 means repeated and should be ignored
+        for (var i = 0; i < arr.length; i++){
+            if (userGuess == arr[i]) {
+                repeat = 1;
+            }
+        }
 
-                    word = wordlist[random]; // the word to guess will be chosen from the array above
-                    guessword = new Array(word.length);
-                    remaining = word.length;
+        if (repeat == 0) {  //The big loop ending on line 73
 
-                    // every letter in the word is symbolized by an underscore in the guessfield
-                    for (var i = 0; i < guessword.length; i++){
-                        guessword[i] = "_ ";
+        arr.push(userGuess);
+        guesses--;
+        var success = 0; // 0 means user guess did not match, 1 means it mathed 1 or more times
+
+        for (var i = 0; i < word.length; i++){
+            if (word[i] == userGuess) {
+                success = 1;
+                guessword[i] = word[i];
+                remaining--;
+            }
+        }
+
+        if (remaining == 0 || guesses == 0) {// one game ends with a win or loss. Refresh and start again.
+                                                     
+            if (remaining == 0) {
+                wins++;
+            }
+            else {
+                losses++;
+            }
+
+            guesses = 12;  //this is part of the bigger if statement from line 54
+            arr = [];
+            random = Math.floor((Math.random()*(wordlist.length-1)));
+
+            word = wordlist[random]; // the word to guess will be chosen from the array above
+            guessword = new Array(word.length);
+            remaining = word.length;
+
+            // every letter in the word is symbolized by an underscore in the guessfield
+            for (var i = 0; i < guessword.length; i++){
+                guessword[i] = "_ ";
                     }
-                }
-                }
+        }
+
+        }
 
             //Taking the tallies and displaying them in HTML
 
-            var html = "<h2> guessword: " + guessword + "</h2>" +
+    var html = "<h2> guessword: " + guessword + "</h2>" +
             "<br>" +
             "<h2> Number of guesses remaining: " + guesses + "</h2>" +
             "<br>" +
@@ -77,12 +90,6 @@ var arr = []; // This array holds the user's guesses so far
 
             // Placing the html in to the game id.
 
-
-
-
     document.querySelector('#game').innerHTML = html;
-
-
-
 
     }
